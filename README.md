@@ -1,2 +1,2 @@
-# chaselin4020projects
-Project database for UGA's NMI 4020
+# Portfolio
+Chase Lin's Project Portfolio
