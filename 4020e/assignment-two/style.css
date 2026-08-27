@@ -1,0 +1,93 @@
+body {
+    background-color: #fff8ed;
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    color: #333333;
+}
+
+h1 {
+    color: #d65a8a;
+}
+
+h2 {
+    color: #8b5e83;
+    margin-top: 30px;
+}
+
+
+/*exercise 1*/
+.custom-list {
+    list-style-image: url("bullet.png");
+}
+
+.custom-list li {
+    margin: 10px 0;
+}
+
+
+/*exercise 2*/
+ol {
+    padding-left: 30px;
+}
+
+ol li {
+    margin: 8px 0;
+}
+
+/*exercise 3*/
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.links a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #d65a8a;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #8b5e83;
+}
+
+.links a:hover {
+    background-color: #d65a8a;
+    color: white;
+}
+
+.links a:active {
+    background-color: #8b5e83;
+    color: white;
+}
+
+.links a:focus {
+    outline: 4px dotted #8b5e83;
+    outline-offset: 3px;
+}
+
+.links a:visited {
+    color: purple;
+}
+
+.links a:visited:hover {
+    background-color: #d65a8a;
+    color: white;
+}
+
+.links a:last-child {
+    text-decoration: underline;
+}
+
+/*exercise 4*/
+@font-face {
+    font-family: "Quicksand";
+    src: 
+        url("fonts/Quicksand-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.custom-font {
+    font-family: "Quicksand", sans-serif;
+}
