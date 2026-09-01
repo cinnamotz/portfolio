@@ -1,0 +1,33 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    margin: 40px;
+    background-color: #fff8ed;
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+/* 30rem = 300px because 1rem = 10px */
+#central {
+    width: 30rem;
+    height: 30rem;
+
+    background: radial-gradient(
+        circle,
+        #f8b4d9,
+        #d65a8a,
+        #8b5e83
+    );
+
+    border-radius: 50%;
+}
+
+a {
+    color: #d65a8a;
+}
+
+a:hover {
+    outline: 15px solid black;
+}
