@@ -14,7 +14,7 @@ code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside,
+tfoot, thead, tr, th, td, page-content, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
 section, summary, time, mark, audio, video {
@@ -25,7 +25,7 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
-article, aside, details, figcaption, figure,
+page-content, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
@@ -1165,7 +1165,7 @@ input, select, textarea {
 			z-index: 1;
 		}
 
-		body.is-article-visible #bg:after {
+		body.is-page-content-visible #bg:after {
 			-moz-transform: scale(1.0825);
 			-webkit-transform: scale(1.0825);
 			-ms-transform: scale(1.0825);
@@ -1391,7 +1391,7 @@ input, select, textarea {
 			border-left: 0;
 		}
 
-		body.is-article-visible #header {
+		body.is-page-content-visible #header {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
 			-ms-transform: scale(0.95);
@@ -1533,7 +1533,7 @@ input, select, textarea {
 		z-index: 3;
 	}
 
-		#main article {
+		#main .page-content {
 			-moz-transform: translateY(0.25rem);
 			-webkit-transform: translateY(0.25rem);
 			-ms-transform: translateY(0.25rem);
@@ -1551,7 +1551,7 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-			#main article.active {
+			#main .page-content.active {
 				-moz-transform: translateY(0);
 				-webkit-transform: translateY(0);
 				-ms-transform: translateY(0);
@@ -1559,7 +1559,7 @@ input, select, textarea {
 				opacity: 1;
 			}
 
-			#main article .close {
+			#main .page-content .close {
 				display: block;
 				position: absolute;
 				top: 0;
@@ -1572,7 +1572,7 @@ input, select, textarea {
 				white-space: nowrap;
 			}
 
-				#main article .close:before {
+				#main .page-content .close:before {
 					-moz-transition: background-color 0.2s ease-in-out;
 					-webkit-transition: background-color 0.2s ease-in-out;
 					-ms-transition: background-color 0.2s ease-in-out;
@@ -1591,21 +1591,21 @@ input, select, textarea {
 					background-repeat: no-repeat;
 				}
 
-				#main article .close:hover:before {
+				#main .page-content .close:hover:before {
 					background-color: rgba(255, 255, 255, 0.075);
 				}
 
-				#main article .close:active:before {
+				#main .page-content .close:active:before {
 					background-color: rgba(255, 255, 255, 0.175);
 				}
 
 		@media screen and (max-width: 736px) {
 
-			#main article {
+			#main .page-content {
 				padding: 3.5rem 2rem 0.5rem 2rem ;
 			}
 
-				#main article .close:before {
+				#main .page-content .close:before {
 					top: 0.875rem;
 					left: 0.875rem;
 					width: 2.25rem;
@@ -1617,7 +1617,7 @@ input, select, textarea {
 
 		@media screen and (max-width: 480px) {
 
-			#main article {
+			#main .page-content {
 				padding: 3rem 1.5rem 0.5rem 1.5rem ;
 			}
 
@@ -1644,7 +1644,7 @@ input, select, textarea {
 			text-transform: uppercase;
 		}
 
-		body.is-article-visible #footer {
+		body.is-page-content-visible #footer {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
 			-ms-transform: scale(0.95);
@@ -1659,3 +1659,94 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+/* Members Flexbox */
+
+	.members-flex {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2rem;
+		margin: 2rem 0;
+	}
+
+	.member {
+		flex: 0 1 calc(50% - 1rem);
+		text-align: center;
+		padding: 1.5rem;
+		border: solid 1px rgba(255, 255, 255, 0.5);
+		border-radius: 4px;
+	}
+
+	.member img {
+		display: block;
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+		margin: 0 auto 1.5rem auto;
+		border-radius: 4px;
+	}
+
+	.member h3 {
+		margin-bottom: 1rem;
+	}
+
+	.member p {
+		margin-bottom: 0;
+		text-align: center;
+	}
+
+	/* Members on smaller screens */
+
+	@media screen and (max-width: 736px) {
+
+		.member {
+			flex: 0 1 100%;
+		}
+
+		.member img {
+			width: 140px;
+			height: 140px;
+		}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		.members-flex {
+			gap: 1.5rem;
+		}
+
+		.member {
+			padding: 1rem;
+		}
+
+		.member img {
+			width: 125px;
+			height: 125px;
+		}
+
+	}
+	body {
+    overflow-y: auto;
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+#main {
+    position: relative;
+    z-index: 2;
+}
+
+#main .page-content {
+    opacity: 1;
+    transform: none;
+    position: relative;
+    z-index: 3;
+}
+
+#bg {
+    z-index: -1;
+}
