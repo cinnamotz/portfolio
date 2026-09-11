@@ -14,7 +14,7 @@ code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, page-content, aside,
+tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
 section, summary, time, mark, audio, video {
@@ -25,7 +25,7 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
-page-content, aside, details, figcaption, figure,
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
@@ -1165,7 +1165,7 @@ input, select, textarea {
 			z-index: 1;
 		}
 
-		body.is-page-content-visible #bg:after {
+		body.is-article-visible #bg:after {
 			-moz-transform: scale(1.0825);
 			-webkit-transform: scale(1.0825);
 			-ms-transform: scale(1.0825);
@@ -1391,7 +1391,7 @@ input, select, textarea {
 			border-left: 0;
 		}
 
-		body.is-page-content-visible #header {
+		body.is-article-visible #header {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
 			-ms-transform: scale(0.95);
@@ -1533,7 +1533,7 @@ input, select, textarea {
 		z-index: 3;
 	}
 
-		#main .page-content {
+		#main .article {
 			-moz-transform: translateY(0.25rem);
 			-webkit-transform: translateY(0.25rem);
 			-ms-transform: translateY(0.25rem);
@@ -1551,7 +1551,7 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-			#main .page-content.active {
+			#main .article.active {
 				-moz-transform: translateY(0);
 				-webkit-transform: translateY(0);
 				-ms-transform: translateY(0);
@@ -1559,7 +1559,7 @@ input, select, textarea {
 				opacity: 1;
 			}
 
-			#main .page-content .close {
+			#main .article .close {
 				display: block;
 				position: absolute;
 				top: 0;
@@ -1572,7 +1572,7 @@ input, select, textarea {
 				white-space: nowrap;
 			}
 
-				#main .page-content .close:before {
+				#main .article .close:before {
 					-moz-transition: background-color 0.2s ease-in-out;
 					-webkit-transition: background-color 0.2s ease-in-out;
 					-ms-transition: background-color 0.2s ease-in-out;
@@ -1591,21 +1591,21 @@ input, select, textarea {
 					background-repeat: no-repeat;
 				}
 
-				#main .page-content .close:hover:before {
+				#main .article .close:hover:before {
 					background-color: rgba(255, 255, 255, 0.075);
 				}
 
-				#main .page-content .close:active:before {
+				#main .article .close:active:before {
 					background-color: rgba(255, 255, 255, 0.175);
 				}
 
 		@media screen and (max-width: 736px) {
 
-			#main .page-content {
+			#main .article {
 				padding: 3.5rem 2rem 0.5rem 2rem ;
 			}
 
-				#main .page-content .close:before {
+				#main .article .close:before {
 					top: 0.875rem;
 					left: 0.875rem;
 					width: 2.25rem;
@@ -1617,7 +1617,7 @@ input, select, textarea {
 
 		@media screen and (max-width: 480px) {
 
-			#main .page-content {
+			#main .article {
 				padding: 3rem 1.5rem 0.5rem 1.5rem ;
 			}
 
@@ -1644,7 +1644,7 @@ input, select, textarea {
 			text-transform: uppercase;
 		}
 
-		body.is-page-content-visible #footer {
+		body.is-article-visible #footer {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
 			-ms-transform: scale(0.95);
@@ -1740,7 +1740,7 @@ input, select, textarea {
     z-index: 2;
 }
 
-#main .page-content {
+#main .article {
     opacity: 1;
     transform: none;
     position: relative;
