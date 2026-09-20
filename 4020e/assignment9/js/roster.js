@@ -4,5 +4,5 @@ let rosterNames = ["Brock Bowers", "Channing Tindall", "Darnell Washington", "Ge
 let output = document.querySelector('#goDawgs');
 
 for (var i = 0; i < rosterNames.length; i++) {
-    output.innerHTML += "<li><div>" + rosterNames[i] + "<img src=roster/" + rosterPix[i] + "></div></li>";
+    output.innerHTML += "<li>" + rosterNames[i] + "<img src=roster/" + rosterPix[i] + "></li>";
 }
