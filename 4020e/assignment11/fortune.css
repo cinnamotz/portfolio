@@ -1,0 +1,85 @@
+body {
+    background-color: #24152f;
+    color: white;
+    font-family: Georgia, serif;
+    text-align: center;
+    padding: 50px 20px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: white;
+    font-size: 38px;
+}
+
+p {
+    color: #eee7f2;
+}
+
+.crystal-ball {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 25px auto;
+    display: block;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #9b7bb5;
+    border-radius: 8px;
+    background-color: #392344;
+    color: white;
+}
+
+input::placeholder {
+    color: #d8cce0;
+}
+
+button {
+    padding: 10px 16px;
+    margin-left: 5px;
+    background-color: #70478a;
+    color: white;
+    border: 1px solid #b99acb;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+}
+
+button:hover {
+    background-color: #8b5ba8;
+}
+
+#result {
+    margin: 30px auto 0;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #392344;
+    border: 1px solid #9b7bb5;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 14px;
+    color: white;
+    animation: sparkle-fade 0.8s ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes sparkle-fade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-15px);
+    }
+}

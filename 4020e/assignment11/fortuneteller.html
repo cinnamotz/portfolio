@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fortune Teller</title>
+    <link rel="stylesheet" href="fortune.css">
+</head>
+
+<body>
+
+    <h1>Fortune Teller</h1>
+
+    <input type="text" id="namehere" placeholder="Enter your name">
+
+    <button onclick="fortune()">Reveal My Fortune</button>
+
+    <div id="result">Your fortune will appear here...</div>
+
+    <img class="crystal-ball" src="crystal ball.png" alt="Crystal ball">
+    
+
+    <script>
+
+        let outcomes = [
+            "You will have an amazing day.",
+            "Something surprising is coming your way.",
+            "A new opportunity is just around the corner.",
+            "Good news is on the horizon.",
+            "Be open to unexpected advice today."
+        ];
+
+        function fortune() {
+
+            let name = document.querySelector('#namehere').value;
+
+            let randomIndex = Math.floor(Math.random() * outcomes.length);
+
+            let selectedFortune = outcomes[randomIndex];
+
+            let result = document.querySelector('#result');
+            result.innerHTML = name + ", your fortune is: " + selectedFortune;
+        }
+
+            document.addEventListener("mousemove", function(event) {
+
+            let sparkle = document.createElement("span");
+
+            sparkle.className = "sparkle";
+            sparkle.innerHTML = "✦";
+
+            sparkle.style.left = event.clientX + "px";
+            sparkle.style.top = event.clientY + "px";
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(function() {
+                sparkle.remove();
+            }, 800);
+        });
+
+    </script>
+
+</body>
+</html>
