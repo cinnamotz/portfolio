@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Trivia</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            background-color: lightblue;
+        }
+
+        #mainDiv {
+            margin: 30px;
+        }
+
+        .question {
+            background-color: white;
+            margin: 20px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .answer {
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="qa()">Load new question set</button>
+
+    <div id="mainDiv"></div>
+
+    <script>
+
+        let divLoad = document.querySelector("#mainDiv");
+        var theAnswer = [];
+
+        function qa() {
+
+            divLoad.innerHTML = "";
+            theAnswer = [];
+
+            $.getJSON('https://the-trivia-api.com/v2/questions/?limit=10', function(data) {
+
+                for (let i = 0; i < 10; i++) {
+
+                    divLoad.innerHTML +=
+                        "<div class='question'>" +
+                        "<h3>Category: " + data[i].category.replaceAll("_", " ").replace(/\b\w/g, c => c.toUpperCase()) + "</h3>" +                        "<p>" + data[i].question.text + "</p>" +
+                        "<div id='answers" + i + "' class='answer'></div>" +
+                        "<button onclick='showAnswer(" + i + ")'>Show Answer</button>" +
+                        "</div>";
+
+                    theAnswer.push(data[i].correctAnswer);
+                }
+
+            });
+
+        }
+
+        function showAnswer(number) {
+
+            let something = "#answers" + number;
+
+            let somethingelse = document.querySelector(something);
+
+            somethingelse.innerHTML = "Answer: " + theAnswer[number];
+
+        }
+
+    </script>
+
+</body>
+</html>
