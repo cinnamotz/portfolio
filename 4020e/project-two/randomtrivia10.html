@@ -11,7 +11,29 @@
         body {
             font-family: 'Quicksand', sans-serif;
             text-align: center;
-            background-color: lightblue;
+            background-color: #dceeff;
+            margin: 0;
+            padding: 30px;
+            color: #17365d;
+        }
+
+        #titleCard {
+            background-color: white;
+            max-width: 700px;
+            margin: 20px auto 30px;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #titleCard h1 {
+            color: #17365d;
+            margin: 0;
+        }
+
+        #titleCard p {
+            color: #17365d;
+            margin-bottom: 15px;
         }
 
         #mainDiv {
@@ -20,26 +42,53 @@
 
         .question {
             background-color: white;
-            margin: 20px;
-            padding: 15px;
-            border-radius: 10px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 700px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question h3 {
+            color: #17365d;
+        }
+
+        .question p {
+            font-size: 18px;
+            color: #17365d;
         }
 
         .answer {
             margin: 10px;
             font-weight: bold;
+            color: #17365d;
         }
 
         button {
-            padding: 10px;
+            padding: 10px 15px;
             margin: 5px;
+            border: none;
+            border-radius: 10px;
+            background-color: #17365d;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #28558a;
         }
     </style>
 </head>
 
 <body>
 
-    <button onclick="qa()">Load new question set</button>
+    <div id="titleCard">
+        <h1>✨ Random Trivia ✨</h1>
+        <p>Test your knowledge with 10 random questions!</p>
+        <button onclick="qa()">Load new question set</button>
+    </div>
 
     <div id="mainDiv"></div>
 
@@ -59,7 +108,8 @@
 
                     divLoad.innerHTML +=
                         "<div class='question'>" +
-                        "<h3>Category: " + data[i].category.replaceAll("_", " ").replace(/\b\w/g, c => c.toUpperCase()) + "</h3>" +                        "<p>" + data[i].question.text + "</p>" +
+                        "<h3>Category: " + data[i].category.replaceAll("_", " ").replace(/\b\w/g, c => c.toUpperCase()) + "</h3>" +
+                        "<p>" + data[i].question.text + "</p>" +
                         "<div id='answers" + i + "' class='answer'></div>" +
                         "<button onclick='showAnswer(" + i + ")'>Show Answer</button>" +
                         "</div>";
