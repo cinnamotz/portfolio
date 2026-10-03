@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Random Trivia</title>
+    <title>10 Random Trivia</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -51,11 +51,33 @@
 
         .question h3 {
             color: #17365d;
+            margin-bottom: 5px;
+        }
+
+        .difficulty {
+            color: #28558a;
+            font-size: 15px;
+            margin-top: 0;
         }
 
         .question p {
             font-size: 18px;
             color: #17365d;
+        }
+
+        .choices {
+            margin: 20px auto;
+            max-width: 550px;
+        }
+
+        .choice {
+            background-color: #dceeff;
+            color: #17365d;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 16px;
         }
 
         .answer {
@@ -85,53 +107,47 @@
 <body>
 
     <div id="titleCard">
-        <h1>✨ Random Trivia ✨</h1>
-        <p>Test your knowledge with 10 random questions!</p>
+        <h1>10 Random Trivia Questions</h1>
+        <p>Test your knowledge with 10 random questions! Can you get them all right?</p>
         <button onclick="qa()">Load new question set</button>
     </div>
 
     <div id="mainDiv"></div>
 
     <script>
-
         let divLoad = document.querySelector("#mainDiv");
         var theAnswer = [];
-
         function qa() {
-
             divLoad.innerHTML = "";
             theAnswer = [];
-
             $.getJSON('https://the-trivia-api.com/v2/questions/?limit=10', function(data) {
-
                 for (let i = 0; i < 10; i++) {
-
+                    let choices = data[i].incorrectAnswers.concat(data[i].correctAnswer);
+                    choices.sort(() => Math.random() - 0.5);
                     divLoad.innerHTML +=
                         "<div class='question'>" +
                         "<h3>Category: " + data[i].category.replaceAll("_", " ").replace(/\b\w/g, c => c.toUpperCase()) + "</h3>" +
+                        "<p class='difficulty'>Difficulty: " + data[i].difficulty.replace(/\b\w/g, c => c.toUpperCase()) + "</p>" +
                         "<p>" + data[i].question.text + "</p>" +
+                        "<div class='choices'>";
+                    for (let j = 0; j < choices.length; j++) {
+                        divLoad.innerHTML +=
+                            "<div class='choice'>" + choices[j] + "</div>";
+                    }
+                    divLoad.innerHTML +=
+                        "</div>" +
                         "<div id='answers" + i + "' class='answer'></div>" +
                         "<button onclick='showAnswer(" + i + ")'>Show Answer</button>" +
                         "</div>";
-
                     theAnswer.push(data[i].correctAnswer);
                 }
-
             });
-
         }
-
         function showAnswer(number) {
-
             let something = "#answers" + number;
-
             let somethingelse = document.querySelector(something);
-
             somethingelse.innerHTML = "Answer: " + theAnswer[number];
-
         }
-
     </script>
-
 </body>
 </html>
