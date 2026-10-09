@@ -1,0 +1,162 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff8f5;
+    color: #51465f;
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px 20px;
+}
+
+h1 {
+    color: #76618f;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #a18dae;
+    font-size: 16px;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.character-selector {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.character-selector h2 {
+    font-size: 20px;
+    color: #76618f;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #51465f;
+    background-color: #e6ddf7;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:nth-child(1) {
+    background-color: #f8dde8;
+}
+
+button:nth-child(2) {
+    background-color: #ddefe2;
+}
+
+button:nth-child(3) {
+    background-color: #f8d9c9;
+}
+
+button:nth-child(4) {
+    background-color: #E8CFE8;
+}
+
+button:nth-child(5) {
+    background-color: #d9eafb;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px #d8c9df;
+}
+
+button:focus-visible {
+    outline: 3px solid #76618f;
+    outline-offset: 3px;
+}
+
+.character-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: white;
+    border: 1px solid #eadff0;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 5px 18px #eadff055;
+}
+
+.image-container {
+    flex: 1;
+    min-width: 0;
+}
+
+.character-card img {
+    display: block;
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.character-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.game-title {
+    color: #a18dae;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.character-info h2 {
+    color: #76618f;
+    font-size: 28px;
+}
+
+.character-info p:last-child {
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #a18dae;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .character-card {
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .character-card img {
+        max-height: 280px;
+    }
+
+    .character-info h2 {
+        font-size: 24px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}

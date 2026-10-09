@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fall of Hyrule | Case File</title>
+    <link rel="stylesheet" href="casefile.css">
+    <script src="casefile.js" defer></script>
+</head>
+
+<body>
+    <header class="hero">
+        <p class="eyebrow">HYRULE INVESTIGATION ARCHIVES</p>
+        <h1>The Fall of Hyrule</h1>
+        <p class="subtitle">
+            An investigation into Calamity Ganon and the Great Calamity
+        </p>
+        <p class="case-number">CASE NO. BOTW-10000 | HISTORICAL ARCHIVE</p>
+    </header>
+
+    <nav class="navigation">
+        <a href="#overview">Overview</a>
+        <a href="#people">Key People</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#witnesses">Witnesses</a>
+        <a href="#investigation">Findings</a>
+        <a href="#status">Case Status</a>
+        <a href="#reflection">Reflection</a>
+    </nav>
+
+    <main>
+        <!-- SECTION 1: CASE OVERVIEW -->
+        <section id="overview" class="panel">
+            <p class="section-label">FILE 01 / CASE SUMMARY</p>
+            <h2>Case Overview</h2>
+
+            <p>
+                One hundred years before the events of The Legend of Zelda:
+                Breath of the Wild, the kingdom of Hyrule suffers a
+                catastrophic attack known as the Great Calamity.
+                Calamity Ganon returns and takes control of ancient
+                technology, including the Guardians and Divine Beasts.
+            </p>
+
+            <p>
+                Princess Zelda attempts to awaken her sealing power while
+                Link, her appointed knight, fights to protect her.
+                Hyrule Castle falls, the Champions are defeated, and
+                Zelda remains behind to contain Ganon.
+            </p>
+
+            <p>
+                This case file examines the people involved, the evidence
+                left behind, and the chain of events that led to Hyrule's
+                defeat. It also considers how Link and Zelda eventually
+                confront the threat and begin restoring hope to the kingdom.
+            </p>
+
+            <div class="fact-grid">
+                <div class="fact">
+                    <span>Primary Threat</span>
+                    <strong>Calamity Ganon</strong>
+                </div>
+
+                <div class="fact">
+                    <span>Location</span>
+                    <strong>Hyrule Kingdom</strong>
+                </div>
+
+                <div class="fact">
+                    <span>Key Event</span>
+                    <strong>The Great Calamity</strong>
+                </div>
+
+                <div class="fact">
+                    <span>Case Status</span>
+                    <strong>Historical Review</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: KEY PEOPLE -->
+        <section id="people" class="panel">
+            <p class="section-label">FILE 02 / PERSONS OF INTEREST</p>
+            <h2>Key People</h2>
+
+            <p>
+                The following individuals played important roles in
+                Hyrule's defense, the Great Calamity, or the events
+                that followed. Select a name to review their role.
+            </p>
+
+            <div class="button-list">
+                <button onclick="showPerson('zelda')">Princess Zelda</button>
+                <button onclick="showPerson('link')">Link</button>
+                <button onclick="showPerson('rhoam')">King Rhoam</button>
+                <button onclick="showPerson('impa')">Impa</button>
+                <button onclick="showPerson('mipha')">Mipha</button>
+                <button onclick="showPerson('daruk')">Daruk</button>
+                <button onclick="showPerson('revali')">Revali</button>
+                <button onclick="showPerson('urbosa')">Urbosa</button>
+                <button onclick="showPerson('ganon')">Calamity Ganon</button>
+            </div>
+
+            
+            <div id="personDetails" class="detail-card character-display" aria-live="polite">
+                <img
+                    id="person-image"
+                    class="person-portrait"
+                    src="casefile-images/zelda.jpg"
+                    alt="Princess Zelda"
+                >
+                <div id="person-info">
+                    <h3>Princess Zelda</h3>
+                    <p><strong>Role:</strong> Princess of Hyrule</p>
+                    <p>
+                        Zelda researches ancient technology and attempts to
+                        awaken her sealing power to protect the kingdom.
+                    </p>
+                </div>
+            </div>
+                <h3>Princess Zelda</h3>
+                <p><strong>Role:</strong> Princess of Hyrule</p>
+                <p>
+                    Zelda researches ancient technology and attempts to
+                    awaken her sealing power to protect the kingdom.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: EVIDENCE -->
+        <section id="evidence" class="panel">
+            <p class="section-label">FILE 03 / EVIDENCE ARCHIVE</p>
+            <h2>Evidence</h2>
+
+            <p>
+                Explore the artifacts, technology, and historical records
+                that help explain Hyrule's defeat.
+            </p>
+
+            <div class="button-list">
+                <button onclick="showEvidence('guardians')">
+                    Guardian Machines
+                </button>
+
+                <button onclick="showEvidence('divineBeasts')">
+                    Divine Beasts
+                </button>
+
+                <button onclick="showEvidence('slate')">
+                    Sheikah Slate
+                </button>
+
+                <button onclick="showEvidence('memories')">
+                    Lost Memories
+                </button>
+            </div>
+
+            <div id="evidenceDetails" class="detail-card" aria-live="polite">
+                <h3>Guardian Machines</h3>
+                <p><strong>Evidence Type:</strong> Ancient Technology</p>
+                <p>
+                    Machines intended to defend Hyrule were corrupted
+                    and turned against the kingdom during the Great Calamity.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TIMELINE -->
+        <section id="timeline" class="panel">
+            <p class="section-label">FILE 04 / CHRONOLOGY</p>
+            <h2>Timeline of Events</h2>
+
+            <p>
+                Select an event to examine its significance in the fall
+                and eventual recovery of Hyrule.
+            </p>
+
+            <div id="timelineButtons" class="button-list"></div>
+
+            <div id="timelineDetails" class="detail-card" aria-live="polite">
+                <h3>Preparation for Ganon's Return</h3>
+                <p>
+                    Hyrule studies ancient technology and selects Champions
+                    to pilot the Divine Beasts in preparation for Ganon.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 5: WITNESSES -->
+        <section id="witnesses" class="panel">
+            <p class="section-label">FILE 05 / TESTIMONY</p>
+            <h2>Witness Accounts</h2>
+
+            <p>
+                These accounts summarize memories, records, and story
+                events from the game. They are not verbatim quotations
+                or real-world witness statements.
+            </p>
+
+            <div class="button-list">
+                <button onclick="showWitness('zelda')">
+                    Zelda's Perspective
+                </button>
+
+                <button onclick="showWitness('impa')">
+                    Impa's Account
+                </button>
+
+                <button onclick="showWitness('diary')">
+                    Royal Records
+                </button>
+
+                <button onclick="showWitness('champions')">
+                    The Champions
+                </button>
+            </div>
+
+            <div id="witnessDetails" class="detail-card" aria-live="polite">
+                <h3>Zelda's Perspective</h3>
+                <p>
+                    Zelda's recovered memories reveal her frustration
+                    with her inability to awaken her power and her
+                    determination to protect Link and Hyrule.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 6: INVESTIGATION FINDINGS -->
+        <section id="investigation" class="panel">
+            <p class="section-label">FILE 06 / ANALYSIS</p>
+            <h2>Investigation Findings</h2>
+
+            <h3>What caused Hyrule's defeat?</h3>
+            <p>
+                Hyrule relied heavily on ancient technology to prepare
+                for Ganon's return. When Ganon corrupted that technology,
+                the kingdom's own defenses became a major threat.
+                The loss of the Champions also left Hyrule without
+                the protection it had expected from the Divine Beasts.
+            </p>
+
+            <h3>What role did Zelda's power play?</h3>
+            <p>
+                Zelda struggled to awaken her sacred power despite
+                extensive research and training. During the Calamity,
+                her power finally awakened, allowing her to confront
+                Ganon and contain him while Link recovered.
+            </p>
+
+            <h3>Could the outcome have been different?</h3>
+            <p>
+                The story suggests that technological preparation alone
+                was not enough. Hyrule's reliance on ancient weapons
+                became a weakness when those weapons were corrupted.
+                The outcome also depended on the Champions' defeat
+                and Zelda's delayed awakening.
+            </p>
+
+            <h3>Final Assessment</h3>
+            <p>
+                The Great Calamity was a major failure of Hyrule's
+                defenses against an enemy capable of turning the
+                kingdom's technological advantages against it.
+                Zelda's resistance preserved the possibility of
+                defeating Ganon and restoring hope to Hyrule.
+            </p>
+        </section>
+
+        <!-- SECTION 7: CASE STATUS -->
+        <section id="status" class="panel">
+            <p class="section-label">FILE 07 / CASE DISPOSITION</p>
+            <h2>Case Status</h2>
+
+            <div class="status-box">
+                <strong>Historical investigation completed</strong>
+
+                <p>
+                    Within Breath of the Wild, Link eventually confronts
+                    Calamity Ganon at Hyrule Castle. With Zelda's help,
+                    he defeats Ganon and brings the long struggle to an end.
+                    Hyrule begins looking toward recovery, although much
+                    of the kingdom remains affected by the Calamity.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 8: STUDENT REFLECTION -->
+        <section id="reflection" class="panel reflection">
+            <p class="section-label">FILE 08 / STUDENT REFLECTION</p>
+            <h2>Reflection</h2>
+
+            <p>
+                Complete these responses in your own words after
+                reviewing and editing the AI-generated case file.
+            </p>
+
+            <h3>1. Provide at least one prompt you used to build this case file.</h3>
+            <p class="answer-space">Write your response here...</p>
+
+            <h3>2. What did you change after the AI output?</h3>
+            <p class="answer-space">Write your response here...</p>
+
+            <h3>3. What did you learn about JavaScript objects?</h3>
+            <p class="answer-space">Write your response here...</p>
+
+            <h3>
+                4. During this project, did you see AI as a shortcut,
+                a collaborator, or something else?
+            </h3>
+            <p class="answer-space">Write your response here...</p>
+
+            <h3>
+                5. After this project, what is a new boundary you would
+                set for yourself OR a boundary you would remove when
+                using AI?
+            </h3>
+            <p class="answer-space">Write your response here...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>HYRULE INVESTIGATION ARCHIVES</p>
+        <p>Prepared for NMC 4020e | Project 3</p>
+    </footer>
+</body>
+</html>

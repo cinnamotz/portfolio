@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Character Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chase's Game Character Archive</h1>
+        <p class="subtitle">All of Chase's Favorite Characters and franchises ♡</p>
+    </header>
+
+    <main>
+        <section class="character-selector">
+            <h2>Choose a Character</h2>
+
+            <div class="buttons">
+                <button onclick="showCharacter('Leon')">Leon</button>
+                <button onclick="showCharacter('Link')">Link</button>
+                <button onclick="showCharacter('Isabelle')">Isabelle</button>
+                <button onclick="showCharacter('Hornet')">Hornet</button>
+                <button onclick="showCharacter('Serena')">Serena</button>
+            </div>
+        </section>
+
+        <section class="character-card">
+            <div class="image-container">
+                <img id="characterImage" src="images/leon.jpg"
+                     alt="Leon S. Kennedy">
+            </div>
+
+            <div class="character-info">
+                <p id="characterGame" class="game-title">RESIDENT EVIL 4</p>
+                <h2 id="characterName">Leon S. Kennedy</h2>
+                <p id="characterDescription">
+                    A government agent sent on a dangerous mission
+                    to rescue the president's daughter.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ♡ by Chase >:3 </p>
+    </footer>
+</body>
+</html>
