@@ -357,3 +357,19 @@ footer p {
     transform: scale(1.04);
     box-shadow: 0 0 16px rgba(84, 223, 255, 0.6);
 }
+
+/* Evidence classification colors */
+.physical-evidence {
+    color: #d6b45a;
+    font-weight: bold;
+}
+
+.artifact-evidence {
+    color: #54dfff;
+    font-weight: bold;
+}
+
+.witness-evidence {
+    color: #7bd88f;
+    font-weight: bold;
+}

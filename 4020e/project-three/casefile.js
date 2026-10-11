@@ -65,29 +65,38 @@ let people = {
 };
 
 
+
 let evidence = {
     guardians: {
         name: "Guardian Machines",
         type: "Ancient Technology",
-        description: "The Guardians were created to help defend Hyrule. During the Great Calamity, Ganon corrupts them and turns their weapons against the kingdom. Their corruption demonstrates how Hyrule's own defenses became a weakness."
+        classification: "Physical Evidence",
+        description: "The Guardians were created to help defend Hyrule. During the Great Calamity, Ganon corrupts them and turns their weapons against the kingdom.",
+        significance: "Their corruption demonstrates how Hyrule's own defenses became a weakness."
     },
 
     divineBeasts: {
         name: "The Divine Beasts",
         type: "Strategic Weapons",
-        description: "Four enormous ancient machines are piloted by Hyrule's Champions. Ganon corrupts the Divine Beasts, defeating the Champions and removing a major part of Hyrule's defense."
+        classification: "Physical Evidence",
+        description: "Four enormous ancient machines are piloted by Hyrule's Champions. Ganon corrupts the Divine Beasts, defeating the Champions and removing a major part of Hyrule's defense.",
+        significance: "Their capture leaves Hyrule without its strongest strategic defenses."
     },
 
     slate: {
         name: "The Sheikah Slate",
         type: "Ancient Artifact",
-        description: "The Sheikah Slate is a device used to access ancient technology. Link uses it to explore ruins, solve puzzles, and uncover information about Hyrule's past."
+        classification: "Artifact",
+        description: "The Sheikah Slate is a device used to access ancient technology. Link uses it to explore ruins, solve puzzles, and uncover information about Hyrule's past.",
+        significance: "It provides Link with tools and information to investigate Hyrule's history."
     },
 
     memories: {
         name: "Lost Memories",
         type: "Historical Records",
-        description: "Link gradually recovers memories of the people and events surrounding the Great Calamity. These memories help reconstruct what happened before the kingdom fell."
+        classification: "Witness Testimony",
+        description: "Link gradually recovers memories of the people and events surrounding the Great Calamity. These memories help reconstruct what happened before the kingdom fell.",
+        significance: "They help piece together the events leading up to and during the Calamity."
     }
 };
 
@@ -165,13 +174,31 @@ function showPerson(personKey) {
 
 
 // Display a selected evidence item's information
+
+
 function showEvidence(evidenceKey) {
     let item = evidence[evidenceKey];
 
+    let classificationClass = "";
+
+    if (item.classification === "Physical Evidence") {
+        classificationClass = "physical-evidence";
+    } else if (item.classification === "Artifact") {
+        classificationClass = "artifact-evidence";
+    } else if (item.classification === "Witness Testimony") {
+        classificationClass = "witness-evidence";
+    }
+
     document.getElementById("evidenceDetails").innerHTML =
         "<h3>" + item.name + "</h3>" +
-        "<p><strong>Evidence Type:</strong> " + item.type + "</p>" +
-        "<p>" + item.description + "</p>";
+        "<p><strong>Type:</strong> " + item.type + "</p>" +
+        "<p><strong>Classification:</strong> " +
+        '<span class="' + classificationClass + '">' +
+        item.classification + "</span></p>" +
+        "<p><strong>Description:</strong> " +
+        item.description + "</p>" +
+        "<p><strong>Significance:</strong> " +
+        item.significance + "</p>";
 }
 
 
