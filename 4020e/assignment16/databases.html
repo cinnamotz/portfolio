@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Athens Coffee Shops: Databases Exercise</title>
+
+<style>
+    body {
+        margin: 0;
+        background-color: #fff8f0;
+        color: #49352f;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: #f7dce3;
+        color: #653b49;
+        text-align: center;
+        padding: 30px 20px;
+        border-bottom: 3px solid #d98da4;
+    }
+
+    header h1 {
+        margin: 0;
+    }
+
+    header p {
+        margin-bottom: 0;
+    }
+
+    main {
+        max-width: 950px;
+        margin: 0 auto;
+        padding: 24px;
+    }
+
+    section {
+        background-color: #fffdf9;
+        border: 1px solid #efd6d2;
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        color: #9b536b;
+        border-bottom: 2px solid #f0c4d0;
+        padding-bottom: 8px;
+    }
+
+    h3 {
+        color: #b66b82;
+    }
+
+    a {
+        color: #a34f6b;
+    }
+
+    a:hover {
+        color: #71354a;
+    }
+
+    .image-block {
+        margin: 20px 0;
+    }
+
+    .image-block img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border: 1px solid #efd6d2;
+        border-radius: 8px;
+    }
+
+    .image-block p {
+        margin: 8px 0 0;
+        color: #725d55;
+        font-size: 0.95em;
+        text-align: left;
+    }
+
+    .pair {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .pair > * {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Keep the WordPress editor screenshot on its own row. */
+    .store-editor-image img {
+        width: 100%;
+    }
+
+    /* Put the two smaller WordPress screenshots side by side. */
+    .store-small-images .image-block {
+        min-width: 0;
+    }
+
+    .store-small-images .image-block img {
+        width: 100%;
+    }
+
+    .note {
+        background-color: #fff0f4;
+        border-left: 4px solid #d98da4;
+        padding: 12px 16px;
+        margin: 16px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+    }
+
+    th, td {
+        border: 1px solid #e8cfca;
+        padding: 9px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f7dce3;
+        color: #653b49;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fff8f0;
+    }
+
+    code {
+        background-color: #fbe8ee;
+        color: #71354a;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 650px) {
+        main {
+            padding: 14px;
+        }
+
+        section {
+            padding: 16px;
+        }
+
+        .pair {
+            display: block;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Athens Coffee Shops</h1>
+    <p>Databases Exercise: Structure, Store, Retrieve, and Present</p>
+</header>
+
+<main>
+
+<section id="structure">
+    <h2>STRUCTURE: Build the Data</h2>
+
+    <p>I started with the ten Athens coffee shops from the exercise and put each one on its own row in a Google Sheet. Then I chose columns by asking what would actually help someone pick a coffee shop. The attributes I settled on were:</p>
+
+    <ul>
+        <li><strong>Neighborhood</strong> (Downtown, 5 Points, Boulevard, Normaltown)</li>
+        <li><strong>Local or Chain</strong></li>
+        <li><strong>Outdoor Seating</strong>, <strong>Food</strong>, <strong>Study Friendly</strong>, <strong>Dog Friendly</strong>, <strong>Delivery</strong>, <strong>Vegan Options</strong></li>
+        <li><strong>Average Price</strong> ($ to $$$$)</li>
+        <li><strong>Allergens</strong></li>
+    </ul>
+
+    <p>The values are placeholder data, since the exercise isn't checking accuracy. The point was the structure, not the facts.</p>
+
+    <div class="image-block">
+        <img src="imgs/sheets.png" alt="Google Sheet with ten coffee shops and their attributes">
+        <p>The finished Google Sheet: one row per shop, one column per attribute.</p>
+    </div>
+
+    <h3>Where the data got messy</h3>
+
+    <ul>
+        <li><strong>Unknown values.</strong> Hendershot's and Jittery Joe's have "Unknown" for Outdoor Seating, and Jittery Joe's has "Unknown" for Allergens. A blank cell and "Unknown" mean different things, so I chose to write "Unknown" explicitly.</li>
+        <li><strong>Seasonal values.</strong> Buvez, Cafe Racer, and Walker's have "Seasonal" outdoor seating. "Yes" would overstate it and "No" would understate it, so Outdoor Seating needed a third value.</li>
+        <li><strong>Multiple values in one cell.</strong> Allergens holds lists like "Soy, Eggs, Peanuts, Tree nuts." That's easy to read but hard to filter on.</li>
+        <li><strong>Price format.</strong> I used dollar signs ($ to $$$$) instead of exact numbers because ranges are easier to group by.</li>
+    </ul>
+
+    <h3>Taxonomy: categories and tags</h3>
+
+    <p>Categories organize and tags describe across that organization, so I split the columns like this:</p>
+
+    <table>
+        <tr>
+            <th>Categories (organize)</th>
+            <td>Neighborhood: Downtown, 5 Points, Boulevard, Normaltown</td>
+        </tr>
+        <tr>
+            <th>Tags (describe across)</th>
+            <td>Local, Chain, Outdoor Seating, Serves Food, Study Friendly, Dog Friendly, Delivery, Vegan Options, and the price tags ($, $$, $$$, $$$$)</td>
+        </tr>
+        <tr>
+            <th>Neither (goes in content)</th>
+            <td>Allergens, plus the "No" and "Unknown" answers that a tag can't express</td>
+        </tr>
+    </table>
+
+    <p>The question to ask here is what this structure lets us retrieve later. A neighborhood category lets us list every shop in one area, and a tag like Study Friendly lets us find matching shops in any area.</p>
+</section>
+
+<section id="map">
+    <h2>MAP: Translate the Model to WordPress</h2>
+
+    <p>The spreadsheet is the conceptual model, but WordPress Posts only give us a fixed set of fields: Title, Content, Excerpt, Featured Image, Categories, and Tags. So I decided where each column would go:</p>
+
+    <table>
+        <tr>
+            <th>Spreadsheet column</th>
+            <th>WordPress field</th>
+        </tr>
+        <tr>
+            <td>Names</td>
+            <td>Post Title</td>
+        </tr>
+        <tr>
+            <td>Neighborhood</td>
+            <td>Category</td>
+        </tr>
+        <tr>
+            <td>Local/Chain, Outdoor Seating, Food, Study Friendly, Dog Friendly, Delivery, Vegan Options</td>
+            <td>Tags (only the "Yes" answers become tags)</td>
+        </tr>
+        <tr>
+            <td>Average Price</td>
+            <td>Tag ($ to $$$$) and a line in the Content</td>
+        </tr>
+        <tr>
+            <td>Allergens, and any "No" or "Unknown" answers</td>
+            <td>Post Content</td>
+        </tr>
+        <tr>
+            <td>One-line summary</td>
+            <td>Excerpt</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Problem:</strong> a tag can only be present or absent. A missing Outdoor Seating tag could mean "No" or "Unknown," and WordPress can't tell the difference. That's why I wrote in the allergen content for each shop, and also included the "No" and "Unknown" answers in the content. That way, a visitor can read the content to get the full story.
+    </div>
+</section>
+
+<section id="store">
+    <h2>STORE: Enter the Data in WordPress Playground</h2>
+
+    <p>In WordPress Playground I created the neighborhood categories first, then published a post for each of four shops: <strong>1000 Faces</strong>, <strong>Hendershot's</strong>, <strong>Molly's Coffee Company</strong>, and <strong>The Rook &amp; Pawn</strong>. Each post has a title, content, an excerpt, a category, and tags.</p>
+
+    <!-- Large editor screenshot on its own row -->
+    <div class="image-block store-editor-image">
+        <img src="imgs/create 1000 faces.png" alt="WordPress editor showing the 1000 Faces post">
+        <p>The post editor for 1000 Faces: the title and content in the main area, with the excerpt in the sidebar.</p>
+    </div>
+
+    <!-- Smaller screenshots side by side -->
+    <div class="pair store-small-images">
+        <div class="image-block">
+            <img src="imgs/tags.png" alt="Categories and tags panel for 1000 Faces">
+            <p>Category (Downtown) and tags ($$, Delivery, Local, Outdoor Seating, Study Friendly, Vegan Options) assigned to 1000 Faces.</p>
+        </div>
+
+        <div class="image-block">
+            <img src="imgs/delete.png" alt="WordPress Posts list">
+            <p>The Posts screen showing the coffee shop posts, their categories, and tags.</p>
+        </div>
+    </div>
+</section>
+
+<section id="curtain">
+    <h2>Look Behind the Curtain: phpMyAdmin</h2>
+
+    <p>Next I opened the Database controls in Playground, launched phpMyAdmin, and browsed the <code>wp_posts</code> table to find where my posts actually went.</p>
+
+    <div class="image-block">
+        <img src="imgs/database view.png" alt="phpMyAdmin Browse view of the wp_posts table">
+        <p>The wp_posts table in phpMyAdmin, showing the database records.</p>
+    </div>
+
+    <h3>Identifying the parts</h3>
+
+    <table>
+        <tr>
+            <th>Table</th>
+            <td><code>wp_posts</code> (shown in the breadcrumb: Server &raquo; Database: wordpress &raquo; Table: wp_posts)</td>
+        </tr>
+        <tr>
+            <th>Row / record</th>
+            <td>The line for 1000 Faces, one row for one post</td>
+        </tr>
+        <tr>
+            <th>Column / field</th>
+            <td><code>post_title</code>, <code>post_excerpt</code>, and <code>post_status</code> are examples</td>
+        </tr>
+        <tr>
+            <th>Value</th>
+            <td><code>1000 Faces</code> in <code>post_title</code>, or <code>publish</code> in <code>post_status</code></td>
+        </tr>
+        <tr>
+            <th>Post ID</th>
+            <td><strong>7</strong> (1000 Faces); Hendershot's is ID 10</td>
+        </tr>
+    </table>
+
+    <h3>Similarities and Differences</h3>
+
+    <ul>
+        <li>Each post is a row, just like each shop was a row in my Google Sheet.</li>
+        <li><code>post_title</code> matches my Names column, and <code>post_excerpt</code> and <code>post_content</code> hold the text I typed.</li>
+        <li>WordPress stored much more than I entered: columns like <code>post_author</code>, <code>comment_status</code>, and <code>post_name</code>, and extra rows I never created, such as "Hello world!", "Sample Page," an Auto Draft, and Custom Styles.</li>
+        <li>Row 9 is a second "1000 Faces" with status <code>inherit</code> and the name <code>7-revision-v1</code>. It's a saved revision, so one post can create more than one row.</li>
+        <li>My categories and tags aren't in this current view. WordPress keeps them in other tables, so the neighborhood and tags from my sheet live somewhere else.</li>
+    </ul>
+</section>
+
+<section id="interact">
+    <h2>INTERACT: CRUD</h2>
+
+    <p>Now working through CRUD...</p>
+
+    <h3>Create</h3>
+    <p>I created and published a new post for The Rook &amp; Pawn (category Downtown, tags $, Delivery, Dog Friendly, Local, Serves Food, Study Friendly).</p>
+
+    <h3>Read</h3>
+    <p>I viewed the published post on the front end of the site. The page shows the title, the category link, the content, and the tags.</p>
+
+    <div class="image-block">
+        <img src="imgs/post%20view.png" alt="Published single post page for The Rook and Pawn">
+        <p>Read: The Rook &amp; Pawn as a visitor sees it.</p>
+    </div>
+
+    <h3>Update</h3>
+    <p>I opened Molly's Coffee Company in the editor and edited the tags, then saved the change.</p>
+
+    <div class="image-block">
+        <img src="imgs/molly%20edit.png" alt="Editor for Molly's Coffee Company with the tags panel open">
+        <p>Update: editing Molly's Coffee Company in the post editor.</p>
+    </div>
+
+    <h3>Delete</h3>
+    <p>I created a temporary test post titled Trash and moved it to the Trash.</p>
+
+    <div class="image-block">
+        <img src="imgs/delete.png" alt="Posts screen showing a post moved to the Trash">
+        <p>Delete: the test post is in the Trash and the coffee shop posts remain published.</p>
+    </div>
+</section>
+
+<section id="retrieve">
+    <h2>RETRIEVE: Put the Structure to Work</h2>
+
+    <p>This is where the work on categories and tags paid off. I opened a post and clicked its category and a tag, and WordPress built a page of matching posts for me.</p>
+
+    <div class="pair">
+        <div class="image-block">
+            <img src="imgs/rnp%202.png" alt="Downtown category archive page">
+            <p>Category: Downtown returns The Rook &amp; Pawn and 1000 Faces.</p>
+        </div>
+
+        <div class="image-block">
+            <img src="imgs/rnp%203.png" alt="Study Friendly tag archive page">
+            <p>Tag: Study Friendly returns The Rook &amp; Pawn, Molly's Coffee Company, and 1000 Faces.</p>
+        </div>
+    </div>
+
+    <div class="image-block">
+        <img src="imgs/rnp%205.png" alt="Serves Food tag archive page">
+        <p>Tag: Serves Food returns The Rook &amp; Pawn and Hendershot's.</p>
+    </div>
+</section>
+
+<section id="present">
+    <h2>PRESENT: One Record, Multiple Views</h2>
+
+    <p>I picked The Rook &amp; Pawn and found the same post in several places:</p>
+
+    <ul>
+        <li><strong>Its individual post view</strong>, with the full content and tags</li>
+        <li><strong>The main posts listing</strong> (the Blog page)</li>
+        <li><strong>The Downtown category archive</strong></li>
+        <li><strong>The Study Friendly and Serves Food tag archives</strong></li>
+    </ul>
+
+    <div class="pair">
+        <div class="image-block">
+            <img src="imgs/rnp%204.png" alt="Main Blog page listing coffee shop posts">
+            <p>The main Blog listing.</p>
+        </div>
+
+        <div class="image-block">
+            <img src="imgs/rnp%201.png" alt="Single coffee shop post view">
+            <p>A single post view, with category and tags shown beneath the content.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+</body>
+</html>
