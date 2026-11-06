@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How Bout'Em | Spaniel Gallery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #fff8f2;
+      color: #59463e;
+      font-family: Georgia, serif;
+    }
+
+    #app {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 25px;
+      text-align: center;
+    }
+
+    header {
+      padding: 25px 15px;
+      margin-bottom: 25px;
+    }
+
+    .paw {
+      font-size: 35px;
+    }
+
+    h1 {
+      color: #a66f69;
+      font-size: 46px;
+      letter-spacing: 5px;
+      margin: 10px 0;
+    }
+
+    .subtitle {
+      color: #987c70;
+      font-size: 17px;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      background-color: #dfaaa0;
+      margin: 25px auto;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #a66f69;
+      font-size: 25px;
+    }
+
+    .intro {
+      color: #8c786e;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 25px 0;
+    }
+
+    button {
+      border: 2px solid #dba69c;
+      background-color: #f4dcd5;
+      color: #815b54;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #dba69c;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .active {
+      background-color: #a66f69;
+      color: white;
+    }
+
+    .slideshow {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 25px;
+      background-color: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(100, 70, 50, 0.10);
+    }
+
+    .main-image {
+      width: 100%;
+      height: 400px;
+      object-fit: contain;
+      background-color: #faf4ef;
+      border-radius: 12px;
+      margin: 15px 0;
+    }
+
+    .photo-count {
+      color: #987c70;
+      font-size: 14px;
+      margin: 15px 0 20px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .loading {
+      color: #a66f69;
+      padding: 30px;
+      font-style: italic;
+    }
+
+    .error {
+      color: #b34d4d;
+    }
+
+    footer {
+      margin-top: 45px;
+      padding: 25px;
+      border-top: 1px solid #ead5cb;
+      color: #a58b7f;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .main-image {
+        height: 280px;
+      }
+
+      .slideshow {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <header>
+    <div class="paw">🐾</div>
+    <h1>HOW BOUT'EM</h1>
+    <p class="subtitle">A little gallery of very good dogs.</p>
+    <div class="divider"></div>
+  </header>
+
+  <main>
+
+    <h2>Meet the Spaniels</h2>
+
+    <p class="intro">
+      Pick your favorite breed and enjoy some adorable faces!
+    </p>
+
+    <div class="buttons">
+
+      <button
+        v-on:click="showme('Cocker')"
+        v-bind:class="{ active: whichDawg === 'Cocker' }">
+        ♡ Cocker
+      </button>
+
+      <button
+        v-on:click="showme('Brittany')"
+        v-bind:class="{ active: whichDawg === 'Brittany' }">
+        ♡ Brittany
+      </button>
+
+    </div>
+
+    <p v-if="loading" class="loading">
+      Finding some adorable pups...
+    </p>
+
+    <p v-if="error" class="error">
+      {{ error }}
+    </p>
+
+    <div
+      v-if="moreData.length > 0 && !loading"
+      class="slideshow">
+
+      <h2>{{ whichDawg }} Spaniel</h2>
+
+      <a :href="moreData[selector]" target="_blank">
+        <img
+          class="main-image"
+          :src="moreData[selector]"
+          alt="Spaniel dog">
+      </a>
+
+      <p class="photo-count">
+        Photo {{ selector + 1 }} of {{ moreData.length }}
+      </p>
+
+      <div class="controls">
+
+        <button v-on:click="previousImage()">
+          ← Back
+        </button>
+
+        <button v-on:click="slider()">
+          Next →
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    MADE WITH ♡ AND A LOT OF DOG PICTURES
+    <br><br>
+    Powered by the Dog CEO API
+  </footer>
+
+</div>
+
+<script src="slideshow.js"></script>
+
+</body>
+</html>
